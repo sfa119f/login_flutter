@@ -89,8 +89,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                 height: 116,
                 width: 116,
                 margin: const EdgeInsets.only(bottom: 58.12),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(58),
+                  image: const DecorationImage(
                     image: AssetImage('assets/img/ic_photo.png'),
                     fit: BoxFit.fill,
                   )
