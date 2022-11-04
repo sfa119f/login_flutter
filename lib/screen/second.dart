@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:login_flutter/screen/third.dart';
 
-class SecondScreen extends StatelessWidget {
+class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key, required this.name});
   final String name;
+
+  @override
+  State<SecondScreen> createState() => _SecondScreenWidgetState();
+}
+
+class _SecondScreenWidgetState extends State<SecondScreen> {
+  var username = "";
+
+  @override
+  void initState() {
+    super.initState();
+    username = widget.name;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +47,10 @@ class SecondScreen extends StatelessWidget {
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
             ),
           ),
-          UsernameWidget(username: name),
+          Text(
+            username,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          ),
           Container(
             height: (MediaQuery.of(context).size.height) - 220,
             child: const Center(
@@ -45,7 +61,7 @@ class SecondScreen extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(bottom: 10),
+            margin: const EdgeInsets.only(bottom: 10),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF2B637B),
@@ -56,34 +72,19 @@ class SecondScreen extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 14),
               ), 
               child: const Text("Choose a User"), 
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                var newValue = await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ThirdScreen())
+                  MaterialPageRoute(builder: (context) => ThirdScreen())
                 );
+                if (newValue != null) {
+                  setState(() => username = newValue);
+                }
               },
             )
           )
         ],
       ),
-    );
-  }
-}
-
-class UsernameWidget extends StatefulWidget {
-  const UsernameWidget({super.key, required this.username});
-  final String username;
-
-  @override
-  State<UsernameWidget> createState() => _UsernameWidgetState();
-}
-
-class _UsernameWidgetState extends State<UsernameWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      widget.username,
-      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
     );
   }
 }
