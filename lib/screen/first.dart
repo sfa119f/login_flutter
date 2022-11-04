@@ -6,25 +6,8 @@ class FirstScreen extends StatelessWidget {
   const FirstScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
-    return Scaffold(
-      body: const LoginWidget(),
-      // body: Center(
-      //   child: ElevatedButton(
-      //     child: Text("Login"), 
-      //     onPressed: () {
-      //       Navigator.push(
-      //         context,
-      //         MaterialPageRoute(builder: (context) => const SecondScreen())
-      //       );
-      //       // -- Digunakan untuk mereplace page (tanpa menambah stack page) -- //
-      //       // Navigator.pushReplacement(context, 
-      //       //     MaterialPageRoute(builder: (context) {
-      //       //   return MainPage();
-      //       // }));
-      //     },
-      //   )
-      // ),
+    return const Scaffold(
+      body: LoginWidget(),
     );
   }
 }
@@ -75,9 +58,10 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   void nextPage() {
     if (isPalindrom()){
+      String name = nameController.text.toString();
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const SecondScreen())
+        MaterialPageRoute(builder: (context) => SecondScreen(name: name))
       );
       nameController.text = '';
       palindromController.text = '';
@@ -119,7 +103,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 controller: nameController,
                 style: const TextStyle(fontSize: 16),
                 decoration: const InputDecoration(
-                  labelText: 'Name',
+                  hintText: 'Name',
                   contentPadding: EdgeInsets.symmetric(
                     vertical: 7.94,
                     horizontal: 20
@@ -135,7 +119,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 controller: palindromController,
                 style: const TextStyle(fontSize: 16),
                 decoration: const InputDecoration(
-                  labelText: 'Palindrom',
+                  hintText: 'Palindrom',
                   border: OutlineInputBorder(),
                   contentPadding: EdgeInsets.symmetric(
                     vertical: 7.94,
