@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -71,46 +70,6 @@ class ThirdScreen extends StatelessWidget {
       body:Container( 
         padding: const EdgeInsets.all(20),
         child: const UserListWidget()
-        // child: InkWell(
-        //   onTap: () {
-        //     Navigator.pop(context, 'New Nakama');
-        //   },
-        //   child: Container(
-        //     padding: const EdgeInsets.all(16),
-        //     decoration: const BoxDecoration(
-        //       border: Border(bottom: BorderSide(width: 0.5, color: Color(0xFFE2E3E4)))
-        //     ),
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.start,
-        //       mainAxisSize: MainAxisSize.max,
-        //       children: <Widget>[
-        //         Container(
-        //           height: 49,
-        //           width: 49,
-        //           margin: const EdgeInsets.only(right: 20),
-        //           decoration: BoxDecoration(
-        //             borderRadius: BorderRadius.circular(25),
-        //             image: const DecorationImage(
-        //               image: NetworkImage("https://reqres.in/img/faces/1-image.jpg"),
-        //               fit: BoxFit.fill,
-        //             )
-        //           ),
-        //         ),
-        //         Column(
-        //           mainAxisSize: MainAxisSize.min,
-        //           crossAxisAlignment: CrossAxisAlignment.start,
-        //           children: <Widget>[
-        //             Text(
-        //               'first_name last_name', 
-        //               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)
-        //             ),
-        //             Text('example.email.com', style: TextStyle(fontSize: 10))
-        //           ],
-        //         )
-        //       ]
-        //     ),
-        //   ),
-        // ),
       ),
     );
   }
@@ -156,7 +115,7 @@ class _UserListWidgetState extends State<UserListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return users == null
+    return users == null || users!.isEmpty
       ? const Center(child: CircularProgressIndicator(),)
       : ListView.builder(
         itemCount: users!.length,
